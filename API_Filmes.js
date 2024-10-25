@@ -1,4 +1,3 @@
-async function fetchData() {
   const options = {
     method: "GET",
     headers: {
@@ -6,28 +5,11 @@ async function fetchData() {
       Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1OTVkNzg2MGQ3MWM2MDcxNjM5MDc3NTMxOTM2MDRmNSIsIm5iZiI6MTcyOTcwODUxMi40MDA1MjYsInN1YiI6IjY3MTkzMDUxNmQ2YjcwNWRjODcxMWE3MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.K0Alel---mR396G1i7KWtqb3gvAlL6QVxe0niOHhdMg",
     },
   };
-  const title = document.getElementById("title").value.toLowerCase;
-  try {
+  fetch('https://api.themoviedb.org/3/discover/movie?with_keywords=9951,9882&language=pt-BR', options)
+  .then(res => res.json())
+  .then(res => console.log(res))
+  .catch(err => console.error(err));
 
-    const response = await fetch('https://api.themoviedb.org/3/movie/1184918?language=en-US', options)
-
-
-
-      if(!response.ok){
-        throw new Error("Could not fetch resource");
-    }
-
-    const data = await response.json();
-    const moviePoster = data.poster_path; 
-    const imgElement = document.getElementById("moviePoster"); 
-    
-    imgElement.src = moviePoster; 
-    imgElement.style.display = "block";
-}
-  catch(error){
-      console.error(error);
-  }
-}
 
 
 // overview = sinopse
